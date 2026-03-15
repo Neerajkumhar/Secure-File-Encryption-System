@@ -13,6 +13,13 @@ CORS(app)
 # Limit file size to 50MB
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024
 
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({
+        "status": "success",
+        "message": "Secure File Encryption System API is running. Use /encrypt or /decrypt endpoints via POST."
+    }), 200
+
 @app.route('/encrypt', methods=['POST'])
 def encrypt_api():
     if 'file' not in request.files:
